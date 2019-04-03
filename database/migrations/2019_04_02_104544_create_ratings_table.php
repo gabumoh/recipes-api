@@ -18,7 +18,7 @@ class CreateRatingsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->bigInteger('recipe_id')->unsigned();
             $table->integer('rating');
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('recipe_id')->references('id')->on('recipes')->onUpdate('cascade')->onDelete('cascade');
