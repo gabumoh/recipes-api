@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Recipe;
-use App\Ingredient;
-use App\Http\Resources\IngredientResource;
-use Validator
+use App\Direction;
+use App\Http\Resources\DirectionResource;
+use Validator;
 
-class IngredientController extends Controller
+class DirectionController extends Controller
 {
     /**
      * Store a newly created resource in storage.
@@ -21,59 +21,62 @@ class IngredientController extends Controller
         $input = $request->all();
 
         $validator = Validator::make($input, [
-            'ingredient' => 'required',
+            'step' => 'required|integer',
+            'direction' => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
 
-        $ingredient = Ingredient::create([
+        $direction = Direction::create([
             'user_id' => $request->user()->id,
             'recipe_id' => $recipe->id,
-            'ingredient' => $request->ingredient,
+            'step' => $request->step,
+            'direction' => $request->direction,
         ]);
 
-        return new IngredientResource($ingredient);
+        return new DirectionResource($direction);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $ingredient
+     * @param  int  $direction
      * @return \Illuminate\Http\Response
      */
-    public function show(Ingredient $ingredient)
+    public function show(Direction $direction)
     {
-        return new IngredientResource($ingredient);
+        return new DirectionResource($direction);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $ingredient
+     * @param  int  $direction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ingredient $ingredient)
+    public function update(Request $request, Direction $direction)
     {
         $input = $request->all();
 
-        $validator = Validator::make($input, [
-            'ingredient' => 'required',
+        $validator = Validator::make($input,[
+            'step' => 'required|integer',
+            'direction' => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
 
-        if ($request->user()->id !== $ingredient->user_id) {
-            return response()->json(['error' => 'You can only edit your own ingredients.'], 403);
+        if ($request->user()->id !== $direction->user_id) {
+            return response()->json(['error' => 'You can only edit your own directions.'], 403);
         }
 
-        $ingredient->update($request->only('ingredient'));
+        $direction->update($request->only(['step', 'direction']));
 
-        return new IngredientResource($ingredient);
+        return new DirectionResource($direction);
     }
 
     /**
@@ -82,13 +85,13 @@ class IngredientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ingredient $ingredient)
+    public function destroy(Direction $direction)
     {
-        if ($request->user()->id !== $ingredient->user_id) {
-            return response()->json(['error' => 'You can only delete your own ingredients.'], 403);
+        if ($request->user()->id !== $direction->user_id) {
+            return response()->json(['error' => 'You can only delete your own directions.'], 403);
         }
 
-        $ingredient->delete();
+        $direction->delete();
 
         return response()->json('Deleted Successfully', 200);
     }

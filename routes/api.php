@@ -28,13 +28,21 @@ Route::prefix('admin')->group(function(){
 	Route::post('register', 'AuthController@adminRegister');
 });
 
+// Recipes Endpoints
 Route::get('recipes', 'RecipeController@index');
 Route::get('recipes/{recipe}', 'RecipeController@show');
 Route::post('recipe', 'RecipeController@store')->middleware(['auth:api', 'scope:create-recipe']);
 Route::put('recipe/{recipe}', 'RecipeController@update')->middleware(['auth:api', 'scope:edit-recipe']);
 Route::delete('recipe/{recipe}', 'RecipeController@destroy')->middleware(['auth:api', 'scope:delete-recipe']);
 
+// Ingredients Endpoints
 Route::get('recipe/{recipe}/ingredient/{ingredient}', 'IngredientController@show');
 Route::post('recipe/{recipe}/ingredient', 'IngredientController@store')->middleware(['auth:api', 'scope:create-ingredient']);
 Route::put('recipe/{recipe}/ingredient/{ingredient}', 'IngredientController@update')->middleware(['auth:api', 'scope:edit-ingredient']);
 Route::delete('recipe/{recipe}/ingredient/{ingredient}', 'IngredientController@destroy')->middleware(['auth:api', 'scope:delete-ingredient']);
+
+// Directions Endpoint
+Route::get('recipe/{recipe}/direction/{direction}', 'DirectionController@show');
+Route::post('recipe/{recipe}/direction', 'DirectionController@store')->middleware(['auth:api', 'scope:create-direction']);
+Route::put('recipe/{recipe}/direction/{direction}', 'DirectionController@update')->middleware(['auth:api', 'scope:edit-direction']);
+Route::delete('recipe/{recipe}/direction/{direction}', 'DirectionController@destroy')->middleware(['auth:api', 'scope:delete-direction']);
