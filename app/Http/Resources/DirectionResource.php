@@ -15,6 +15,7 @@ class DirectionResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'step' => $this->step,
             'direction' => $this->direction,
         ];

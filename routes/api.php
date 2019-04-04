@@ -27,3 +27,14 @@ Route::prefix('admin')->group(function(){
 	Route::post('login', 'AuthController@adminLogin');
 	Route::post('register', 'AuthController@adminRegister');
 });
+
+Route::get('recipes', 'RecipeController@index');
+Route::get('recipes/{recipe}', 'RecipeController@show');
+Route::post('recipe', 'RecipeController@store')->middleware(['auth:api', 'scope:create-recipe']);
+Route::put('recipe/{recipe}', 'RecipeController@update')->middleware(['auth:api', 'scope:edit-recipe']);
+Route::delete('recipe/{recipe}', 'RecipeController@destroy')->middleware(['auth:api', 'scope:delete-recipe']);
+
+Route::get('recipe/{recipe}/ingredient/{ingredient}', 'IngredientController@show');
+Route::post('recipe/{recipe}/ingredient', 'IngredientController@store')->middleware(['auth:api', 'scope:create-ingredient']);
+Route::put('recipe/{recipe}/ingredient/{ingredient}', 'IngredientController@update')->middleware(['auth:api', 'scope:edit-ingredient']);
+Route::delete('recipe/{recipe}/ingredient/{ingredient}', 'IngredientController@destroy')->middleware(['auth:api', 'scope:delete-ingredient']);
