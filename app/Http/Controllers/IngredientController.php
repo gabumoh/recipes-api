@@ -55,7 +55,7 @@ class IngredientController extends Controller
      * @param  int  $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ingredient $ingredient)
+    public function update(Request $request, Recipe $recipe, Ingredient $ingredient)
     {
         $input = $request->all();
 

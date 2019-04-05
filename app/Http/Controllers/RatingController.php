@@ -56,7 +56,7 @@ class RatingController extends Controller
      * @param  int  $rating
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rating $rating)
+    public function update(Request $request, Recipe $recipe, Rating $rating)
     {
         $input = $request->all();
 

@@ -57,7 +57,7 @@ class DirectionController extends Controller
      * @param  int  $direction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Direction $direction)
+    public function update(Request $request, Recipe $recipe, Direction $direction)
     {
         $input = $request->all();
 

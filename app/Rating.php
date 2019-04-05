@@ -19,6 +19,8 @@ class Rating extends Model
 
     protected $guarded = ['id'];
 
+    protected $hidden = ['user_id', 'recipe_id', 'deleted_at', 'created_at', 'updated_at'];
+
     public function recipe()
     {
     	return $this->belongsTo(Recipe::class);
