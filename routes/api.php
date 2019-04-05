@@ -41,8 +41,14 @@ Route::post('recipe/{recipe}/ingredient', 'IngredientController@store')->middlew
 Route::put('recipe/{recipe}/ingredient/{ingredient}', 'IngredientController@update')->middleware(['auth:api', 'scope:edit-ingredient']);
 Route::delete('recipe/{recipe}/ingredient/{ingredient}', 'IngredientController@destroy')->middleware(['auth:api', 'scope:delete-ingredient']);
 
-// Directions Endpoint
+// Directions Endpoints
 Route::get('recipe/{recipe}/direction/{direction}', 'DirectionController@show');
 Route::post('recipe/{recipe}/direction', 'DirectionController@store')->middleware(['auth:api', 'scope:create-direction']);
 Route::put('recipe/{recipe}/direction/{direction}', 'DirectionController@update')->middleware(['auth:api', 'scope:edit-direction']);
 Route::delete('recipe/{recipe}/direction/{direction}', 'DirectionController@destroy')->middleware(['auth:api', 'scope:delete-direction']);
+
+// Ratings Endpoints
+Route::get('recipe/{recipe}/rating/{rating}', 'RatingController@show');
+Route::post('recipe/{recipe}/rating', 'RatingController@store')->middleware(['auth:api', 'scope:add-review']);
+Route::patch('recipe/{recipe}/rating/{rating}', 'RatingController@update')->middleware(['auth:api', 'scope:edit-review']);
+Route::delete('recipe/{recipe}/rating/{rating}', 'RatingController@destroy')->middleware(['auth:api', 'scope:delete-review']);
