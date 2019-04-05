@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Direction extends Model
+class Rating extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
 
 	/**
      * The attributes that should be mutated to dates.

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Recipe;
 use App\Ingredient;
 use App\Http\Resources\IngredientResource;
-use Validator
+use Validator;
 
 class IngredientController extends Controller
 {
