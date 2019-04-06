@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Recipe;
 use App\Http\Resources\RecipeResource;
 use Validator;
+use Auth;
 
 class RecipeController extends Controller
 {

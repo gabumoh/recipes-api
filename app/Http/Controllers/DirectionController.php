@@ -7,6 +7,7 @@ use App\Recipe;
 use App\Direction;
 use App\Http\Resources\DirectionResource;
 use Validator;
+use Auth;
 
 class DirectionController extends Controller
 {
@@ -85,9 +86,9 @@ class DirectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Direction $direction)
+    public function destroy(Recipe $recipe, Direction $direction)
     {
-        if ($request->user()->id !== $direction->user_id) {
+        if (Auth::id() !== $direction->user_id) {
             return response()->json(['error' => 'You can only delete your own directions.'], 403);
         }
 

@@ -7,6 +7,7 @@ use App\Recipe;
 use App\Ingredient;
 use App\Http\Resources\IngredientResource;
 use Validator;
+use Auth;
 
 class IngredientController extends Controller
 {
@@ -79,12 +80,12 @@ class IngredientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ingredient $ingredient)
+    public function destroy(Recipe $recipe, Ingredient $ingredient)
     {
-        if ($request->user()->id !== $ingredient->user_id) {
+        if (Auth::id() !== $ingredient->user_id) {
             return response()->json(['error' => 'You can only delete your own ingredients.'], 403);
         }
 

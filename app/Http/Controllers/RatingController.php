@@ -7,6 +7,7 @@ use App\Recipe;
 use App\Rating;
 use App\Http\Resources\RatingResource;
 use Validator;
+use Auth;
 
 class RatingController extends Controller
 {
@@ -83,9 +84,9 @@ class RatingController extends Controller
      * @param  int  $rating
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rating $rating)
+    public function destroy(Recipe $recipe, Rating $rating)
     {
-        if ($request->user()->id !== $rating->user_id) {
+        if (Auth::id() !== $rating->user_id) {
             return response()->json(['error' => 'You can only delete your own reviews.'], 403);
         }
 
