@@ -52,7 +52,7 @@ class IngredientTest extends TestCase
 
     	$ingredient->ingredient = "Updated Ingredient";
 
-    	$this->put('api/recipe/'.$recipe->id.'/ingredient/'.$ingredient->id, $ingredient->toArray());
+    	$this->put('/api/recipe/'.$recipe->id.'/ingredient/'.$ingredient->id, $ingredient->toArray());
 
     	$this->assertDatabaseHas('ingredients', ['id' => $ingredient->id, 'ingredient' => 'Updated Ingredient']);
     }
