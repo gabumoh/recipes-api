@@ -102,6 +102,10 @@ class RecipeController extends Controller
      */
     public function destroy(Recipe $recipe)
     {
+        if (Auth::id() !== $recipe->user_id) {
+            return response()->json(['error' => 'You can only delete your own recipes.'], 403);
+        }
+
         $recipe->delete();
 
         return response()->json('Deleted Successfully', 200);

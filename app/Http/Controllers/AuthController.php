@@ -31,7 +31,7 @@ class AuthController extends Controller
     	$credentials = $request->only(['email', 'password']);
     	if (Auth::attempt($credentials)) {
     		$user = Auth::user();
-    		$success['token'] = $user->createToken('MyApp', ['create-recipe', 'edit-recipe', 'create-ingredient', 'edit-ingredient', 'create-direction', 'edit-direction', 'delete-direction', 'add-review', 'edit-review', 'delete-review'])->accessToken;
+    		$success['token'] = $user->createToken('MyApp', ['create-recipe', 'edit-recipe', 'delete-recipe', 'create-ingredient', 'edit-ingredient', 'create-direction', 'edit-direction', 'delete-direction', 'add-review', 'edit-review', 'delete-review'])->accessToken;
     		return response()->json(['success' => $success], 200);
     	}
     	else {
@@ -65,7 +65,7 @@ class AuthController extends Controller
     		'password' => bcrypt($request->password),
     	]);
     	$success['name'] = $user->name;
-    	$success['token'] = $user->createToken('MyApp', ['create-recipe', 'edit-recipe', 'create-ingredient', 'edit-ingredient', 'create-direction', 'edit-direction', 'delete-direction', 'add-review', 'edit-review', 'delete-review'])->accessToken;
+    	$success['token'] = $user->createToken('MyApp', ['create-recipe', 'edit-recipe', 'delete-recipe', 'create-ingredient', 'edit-ingredient', 'create-direction', 'edit-direction', 'delete-direction', 'add-review', 'edit-review', 'delete-review'])->accessToken;
 
     	return response()->json(['success' => $success], 200);
     }
