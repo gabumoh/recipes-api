@@ -13,9 +13,11 @@ class AuthController extends Controller
     /**
      * login API
      *
+     * @param \Illuminate\Http\Request  $request
+     * @param string email required
+     * @param string password required
      * @return \Illuminate\Http\Response
      */
-
     public function login(Request $request)
     {
     	$input = $request->all();
@@ -42,6 +44,9 @@ class AuthController extends Controller
     /**
      * register API
      *
+     * @param \Illuminate\Http\Request  $request
+     * @param string email required
+     * @param string password required
      * @return \Illuminate\Http\Response
      */
 
@@ -73,6 +78,9 @@ class AuthController extends Controller
     /**
      * admin Login API
      *
+     * @param \Illuminate\Http\Request  $request
+     * @param string email required
+     * @param string password required
      * @return \Illuminate\Http\Response
      */
 
@@ -102,6 +110,9 @@ class AuthController extends Controller
     /**
      * admin Register API
      *
+     * @param \Illuminate\Http\Request  $request
+     * @param string email required
+     * @param string password required
      * @return \Illuminate\Http\Response
      */
 

@@ -24,6 +24,10 @@ class RecipeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param string title required
+     * @param string yeilds required
+     * @param string prep_time required
+     * @param string total_time required
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,7 +59,7 @@ class RecipeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $recipe
+     * @param int $recipe required passed withing request
      * @return \Illuminate\Http\Response
      */
     public function show(Recipe $recipe)
@@ -67,7 +71,11 @@ class RecipeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $recipe
+     * @param int $recipe required passed within request
+     * @param string title required
+     * @param string yeild required
+     * @param string prep_time required
+     * @param string total_time required
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Recipe $recipe)
@@ -97,7 +105,7 @@ class RecipeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $recipe
+     * @param int $recipe required passed within request
      * @return \Illuminate\Http\Response
      */
     public function destroy(Recipe $recipe)

@@ -15,6 +15,9 @@ class DirectionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param int $recipe required passed in request
+     * @param int step required
+     * @param text direction required
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Recipe $recipe)
@@ -43,7 +46,7 @@ class DirectionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $direction
+     * @param  int  $direction required passed in request
      * @return \Illuminate\Http\Response
      */
     public function show(Direction $direction)
@@ -55,7 +58,10 @@ class DirectionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $direction
+     * @param int $recipe required passed in request
+     * @param int $direction required passed in request
+     * @param int step required
+     * @param text direction required  
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Recipe $recipe, Direction $direction)
@@ -83,7 +89,8 @@ class DirectionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $recipe required passed in request
+     * @param int $direction required passed in request
      * @return \Illuminate\Http\Response
      */
     public function destroy(Recipe $recipe, Direction $direction)

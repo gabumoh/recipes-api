@@ -15,6 +15,9 @@ class RatingController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param int $recipe required passed within request
+     * @param int rating required range between 1 and 10 (min:1, max:10)
+     * @param text comment not-required
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Recipe $recipe)
@@ -42,7 +45,7 @@ class RatingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $rating
+     * @param int $rating required passed within request
      * @return \Illuminate\Http\Response
      */
     public function show(Rating $rating)
@@ -54,7 +57,10 @@ class RatingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $rating
+     * @param int $recipe required passed within request
+     * @param int $rating required passed within request
+     * @param int rating required range between 1 and 10 (min:1, max:10)
+     * @param text comment not-required
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Recipe $recipe, Rating $rating)
@@ -81,7 +87,8 @@ class RatingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $rating
+     * @param int $recipe required passed within request
+     * @param int $rating required passed within request
      * @return \Illuminate\Http\Response
      */
     public function destroy(Recipe $recipe, Rating $rating)

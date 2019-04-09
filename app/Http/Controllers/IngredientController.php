@@ -15,6 +15,8 @@ class IngredientController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param int $recipe required passed in request
+     * @param string ingredient required
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Recipe $recipe)
@@ -41,7 +43,7 @@ class IngredientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $ingredient
+     * @param int $ingredient required passed within request
      * @return \Illuminate\Http\Response
      */
     public function show(Ingredient $ingredient)
@@ -53,7 +55,9 @@ class IngredientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $ingredient
+     * @param int $recipe required passed within request
+     * @param int $ingredient required passed within request
+     * @param string ingredient required
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Recipe $recipe, Ingredient $ingredient)
@@ -80,7 +84,8 @@ class IngredientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $recipe
+     * @param int $recipe required passed within request
+     * @param int $ingredient required passed within request
      * @return \Illuminate\Http\Response
      */
     public function destroy(Recipe $recipe, Ingredient $ingredient)
