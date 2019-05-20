@@ -33,7 +33,7 @@ class AuthController extends Controller
     	$credentials = $request->only(['email', 'password']);
     	if (Auth::attempt($credentials)) {
     		$user = Auth::user();
-    		$success['token'] = $user->createToken('MyApp', ['create-recipe', 'edit-recipe', 'delete-recipe', 'create-ingredient', 'edit-ingredient', 'create-direction', 'edit-direction', 'delete-direction', 'add-review', 'edit-review', 'delete-review'])->accessToken;
+    		$success['token'] = $user->createToken('MyApp', ['create-recipe', 'edit-recipe', 'delete-recipe', 'create-ingredient', 'edit-ingredient', 'delete-ingredient', 'create-direction', 'edit-direction', 'delete-direction', 'add-review', 'edit-review', 'delete-review'])->accessToken;
     		return response()->json(['success' => $success], 200);
     	}
     	else {
@@ -83,7 +83,8 @@ class AuthController extends Controller
      * @param string password required
      * @return \Illuminate\Http\Response
      */
-
+    //TODO: Rewrite entire Admin workflow to give admin more privilages
+    //TODO: Implement User Roles and Privilages (use Spatie or scafold own user roles and privilages)
     public function adminLogin(Request $request)
     {
     	$input = $request->all();
