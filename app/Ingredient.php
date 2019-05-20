@@ -19,7 +19,7 @@ class Ingredient extends Model
 
     protected $guarded = ['id'];
 
-    protected $hidden = ['user_id', 'recipe_id', 'deleted_at', 'created_at', 'updated_at'];
+    protected $hidden = ['id', 'user_id', 'recipe_id', 'deleted_at', 'created_at', 'updated_at'];
 
     public function recipe()
     {
