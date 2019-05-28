@@ -135,4 +135,31 @@ class RecipeTest extends TestCase
             'total_time' => '0 Hours 0 Mins'
         ]);
     }
+
+    public function testDelete()
+    {
+        //Get Token
+        $token = $this->authenticate();
+
+        $recipe = Recipe::create([
+            'user_id' => $this->user->id,
+            'title' => 'Roast Turkey',
+            'yeilds' => '10 servings',
+            'prep_time' => '8 Hours 0 Mins',
+            'total_time' => '12 Hours 30 Mins',
+        ]);
+
+        $this->user->recipes()->save($recipe);
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer '.$token,
+        ])->delete('/api/recipe/'.$recipe->id);
+
+        //Assert Success Status
+        $response->assertStatus(200);
+
+        //Assert Success message
+        $this->assertEquals('Deleted Successfully', $response->json());
+        //TODO: Complete test for recipe required after all tests for ratings, directions, recipe, ingredient has been written.
+    }
 }
