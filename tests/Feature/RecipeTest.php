@@ -98,4 +98,41 @@ class RecipeTest extends TestCase
             'total_time' => '12 Hours 30 Mins'
         ]);
     }
+
+    public function testUpdate()
+    {
+        //Get token
+        $token = $this->authenticate();
+
+        $recipe = Recipe::create([
+            'user_id' => $this->user->id,
+            'title' => 'Roast Turkey',
+            'yeilds' => '10 servings',
+            'prep_time' => '8 Hours 0 Mins',
+            'total_time' => '12 Hours 30 Mins',
+        ]);
+
+        $this->user->recipes()->save($recipe);
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer '.$token,
+        ])->put('/api/recipe/'.$recipe->id, [
+            'title' => 'Updated Title',
+            'yeilds' => 'Updated Yeilds',
+            'prep_time' => '0 Hours 0 Mins',
+            'total_time' => '0 Hours 0 Mins'
+        ]);
+
+        //Assert Success Status
+        $response->assertStatus(200);
+
+        //Assert Database Has Updated Recipe items
+        $this->assertDatabaseHas('recipes', [
+            'id' => $recipe->id,
+            'title' => 'Updated Title',
+            'yeilds' => 'Updated Yeilds',
+            'prep_time' => '0 Hours 0 Mins',
+            'total_time' => '0 Hours 0 Mins'
+        ]);
+    }
 }
